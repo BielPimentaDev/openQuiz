@@ -11,7 +11,7 @@ export const Button = styled.button<ButtonInterface>`
   color: ${props=> props.primary ? 'white': '#00FFB4' };
   border: ${props => props.secundary && '1px solid #00FFB4 '};
   width: 100%;
-  padding: 10px 50px;
+  padding: 10px 20px;
   border-radius: 9px;
 
 

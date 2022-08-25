@@ -60,7 +60,7 @@ const time = 500
     {category}
       </p>
 <Timer
-  duration={15}
+  duration={30}
   
   timesUp={()=> {
     navigate('/congratulations')

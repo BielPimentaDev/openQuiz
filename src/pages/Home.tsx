@@ -8,7 +8,7 @@ import { AppContext } from '../context/AppContext'
 
 export  function Home() {
   const {category} = useContext(AppContext)
-  console.log(category)
+  
     
   return (
       <div className='text-center flex flex-col items-center justify-between  h-screen'>
@@ -26,7 +26,7 @@ export  function Home() {
         </Button>
       </Link>
 
-      <Link to='/suggestions'>
+      <Link to='/suggestion'>
         <Button secundary={true}>
             sugerir pergunta
         </Button>

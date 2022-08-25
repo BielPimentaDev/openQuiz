@@ -15,6 +15,7 @@ export default function Timer(props: TimerProps) {
         isPlaying
         duration={props.duration}
         size={80}
+        
         onComplete={()=> {
 
             props.timesUp()

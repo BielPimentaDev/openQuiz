@@ -5,7 +5,7 @@ import './App.css'
 import {Home} from './pages/Home'
 import {Congratulations} from './pages/Congratulations'
 import {Main} from './pages/Main'
-import {Suggestion} from './pages/Suggestion'
+import Suggestion from './pages/Suggestion'
 import {Categories} from './pages/Categories'
 
 function App() {  
