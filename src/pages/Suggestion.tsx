@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {AiOutlineQuestionCircle} from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 import { Button } from '../components/Button.style'
 import Logo from '../components/Logo'
 import SuggestionModal from './SuggestionModal'
@@ -33,9 +34,12 @@ export default function Suggestion() {
         <Button primary onClick={() => setShowModal(current => !current)}>
           enviar pergunta
         </Button>
-        <Button secundary>
-          voltar ao menu
-        </Button>
+
+        <Link to='/'>  
+          <Button secundary>
+            voltar ao menu
+          </Button>
+        </Link>
 </div>
 {
   showModal && <SuggestionModal setShowModal={setShowModal}/>

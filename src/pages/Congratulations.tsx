@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button.style'
 import Logo from '../components/Logo'
@@ -11,6 +11,7 @@ export  function Congratulations() {
    const {category} = useContext(AppContext)
    const pointsPercentual:number = (userPoints/ questionsObject[category].length *100)
    
+
 
   return (
     <div className='text-center flex flex-col items-center justify-center gap-4'>
@@ -37,7 +38,7 @@ export  function Congratulations() {
           </Link>
 
           <Link to='/categories'>
-            <Button secundary={true}>
+            <Button secundary={true}  onClick={()=> setUserPoints(0)}>
                 categorias
             </Button>
           </Link>
