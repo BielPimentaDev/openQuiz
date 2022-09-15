@@ -2,7 +2,7 @@ import React, { SetStateAction } from 'react'
 import { Button } from '../components/Button.style'
 import {AiFillCheckCircle} from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import './SuggestionModal.css'
+import './suggestionModal.css'
 
 interface Props{
     setShowModal: React.Dispatch<SetStateAction<boolean>>
