@@ -33,8 +33,8 @@ export  function Main() {
     setIsLoading(false)      
   }
   
-  
-
+  const teste = [1,2,3,4,5]
+  console.log(shuffleArray(teste))
   useEffect(()=>{ 
     setQuestionsLength(Object.keys(questions).length)
     getDatas()       

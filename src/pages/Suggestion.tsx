@@ -136,7 +136,8 @@ export default function Suggestion() {
         {inputsGroup.map((input, index) => {
           
           return(
-              <>
+              <div key={index}>
+
               <div key={index} className='flex flex-col mb-2'>
                 <label className='font-semibold text-start'>{input.label}</label>
                 <input 
@@ -149,7 +150,8 @@ export default function Suggestion() {
                 />
               </div>
               {input.name == 'trueAnswer' && <hr className='mb-4 text-grayLight'/>}
-              </>
+                </div>
+              
               )
     })}
         
