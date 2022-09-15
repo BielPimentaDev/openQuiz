@@ -29,7 +29,7 @@ export  function Home() {
       </div>
 
       <footer className='text-grayLight mb-4'>
-      © Criado por Gabriel Pimenta 
+      <Link to='/adm'>© Criado por Gabriel Pimenta </Link>
       </footer>
       </div>
  

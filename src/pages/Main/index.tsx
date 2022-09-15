@@ -17,6 +17,7 @@ export  function Main() {
   const {setQuestionsLength} = useContext(AppContext)
   const {category} = useContext(AppContext)
   const [isFlipped, setIsFlipped] = useState<boolean> (false)
+  const [ shuffledAlternatives, setShuffledAlternatives] = useState([])
   const [questions, setQuestions] = useState<any>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
@@ -25,14 +26,19 @@ export  function Main() {
 
   const getDatas = async ()=>{
     const data = await getDocs(categoryRef)         
-    setQuestions(data.docs.map((doc:any)=> ({...doc.data()})))      
+    setQuestions(data.docs.map((doc:any)=> ({
+      ...doc.data()      
+    
+    })))      
     setIsLoading(false)      
   }
+  
+  
 
   useEffect(()=>{ 
     setQuestionsLength(Object.keys(questions).length)
     getDatas()       
-    console.log(Object.keys(questions).length)
+    
   },[])
 
   const maxArrayCheck = () =>{        
