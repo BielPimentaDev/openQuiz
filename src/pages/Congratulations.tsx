@@ -4,7 +4,7 @@ import { Button } from '../components/Button.style'
 import Logo from '../components/Logo'
 import { ProgressBar } from '../components/ProgressBar.style'
 import { AppContext } from '../context/AppContext'
-import { questionsObject } from '../questions'
+
 
 export  function Congratulations() {
    const {userPoints, setUserPoints} = useContext(AppContext)
@@ -22,7 +22,7 @@ export  function Congratulations() {
       <img src='/congratulations.png' className='w-[300px] mx-auto'/>
       <p className='font-semibold'>
         Você respondeu <br/>
-        <span className='text-3xl'>{userPoints}/{questionsLength}</span> <br/>
+        <span className='text-3xl'>{userPoints}/{questionsLength + 1}</span> <br/>
         respostas certas!
       </p>
 

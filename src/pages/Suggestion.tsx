@@ -79,9 +79,8 @@ export default function Suggestion() {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   
-  const createQuestion = ()=>{
-    console.log(values.category)
-    const collectionRef = collection(db, values.category)
+  const createQuestion = ()=>{    
+    const collectionRef = collection(db, 'suggestionsList')
     const restructuredQuestion = {
       category: values.category,
       title : values.questionTitle,
