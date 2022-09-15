@@ -7,6 +7,7 @@ import {Congratulations} from './pages/Congratulations'
 import {Main} from './pages/Main'
 import Suggestion from './pages/Suggestion'
 import {Categories} from './pages/Categories'
+import Test from './pages/Test'
 
 function App() {  
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/categories' element={<Categories/>}/>
         <Route path='/suggestion' element={<Suggestion/>}/>
         <Route path='/main' element={<Main/>}/>
+        <Route path='/test' element={<Test/>}/>
         <Route path='/congratulations' element={<Congratulations/>}/>
       </Routes>
      </Router>

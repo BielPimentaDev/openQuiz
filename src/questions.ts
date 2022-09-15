@@ -27,8 +27,6 @@ export interface IAlternatives{
 
 export const questionsObject:IQuestionsObject  = {
 
-
-	
 		biologia: [
 {
 		title: 'Qual bicho transmite Doença de Chagas?',

@@ -1,0 +1,10 @@
+.suggestionModal{
+    animation: spanding 0.4s;
+   
+}
+
+@keyframes spanding {
+    from {transform: scale(0);}
+    to{transform: scale(1);}
+}
+

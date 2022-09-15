@@ -6,84 +6,87 @@ import Logo from '../../components/Logo';
 import { AppContext, AppContextProvider } from '../../context/AppContext';
 import Timer from '../../components/Timer';
 import {GrFormNext} from 'react-icons/gr'
+ import { db } from '../../firebase/firebase-config';
+import { collection, getDocs } from 'firebase/firestore';
+import { shuffleArray } from '../../helpers/shuffleArray';
+
+
 export  function Main() {
-  let navigate = useNavigate()
-  
+  let navigate = useNavigate()  
   const {userPoints, setUserPoints} = useContext(AppContext)
+  const {setQuestionsLength} = useContext(AppContext)
   const {category} = useContext(AppContext)
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number> (0)
-  const [seconds, setSeconds] = useState<number> (3)
-
   const [isFlipped, setIsFlipped] = useState<boolean> (false)
+  const [questions, setQuestions] = useState<any>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
+  const currentQuestion = questions[currentQuestionIndex]
+  const categoryRef = collection(db, category)
 
-const questionsSize = questionsObject[category].length
- 
-  const changeQuestion = ():void=>{
-
-    if (currentQuestionIndex < questionsSize -1  ){
-        setCurrentQuestionIndex(curr => curr +1)
-    }
-    else{
-      navigate("/congratulations")
-    }
-  }
-useEffect(()=>{
-  console.log('ok');
-}, [currentQuestionIndex])
-
-
-const time = 500
-
-  const questionClickHandler = (isTrue:boolean) =>{
-    setSeconds(0)
-    setIsFlipped(true)
-    isTrue && setUserPoints(userPoints + 1)
-    setTimeout(()=>{
-      setIsFlipped(false)
-      changeQuestion()
-      setSeconds(5)
-    }, time)
-
+  const getDatas = async ()=>{
+    const data = await getDocs(categoryRef)         
+    setQuestions(data.docs.map((doc:any)=> ({...doc.data()})))      
+    setIsLoading(false)      
   }
 
-  const currentQuestion = questionsObject[category][currentQuestionIndex]
+  useEffect(()=>{ 
+    setQuestionsLength(Object.keys(questions).length)
+    getDatas()       
+    console.log(Object.keys(questions).length)
+  },[])
+
+  const maxArrayCheck = () =>{        
+    if (currentQuestionIndex == Object.keys(questions).length - 1 ){
+      navigate('/congratulations')
+    } 
+    else {setCurrentQuestionIndex(curr => curr + 1)}
+  }
+
+  const alternativeClicked = (isTrue:boolean) =>{
+    setIsFlipped(curr => !curr)
+    setTimeout(()=> {
+      setIsFlipped(curr => !curr)      
+      maxArrayCheck()
+    }, 800)
+    isTrue && setUserPoints(curr=> curr + 1)    
+  }
 
   return (
     <div className='text-center p-2'>
       <Logo/>
     <div>
-
-     <h2 className='font-bold text-2xl my-8 text-center'>
-      {currentQuestion?.title}  
+    {isLoading ? <p>Carregando...</p> : 
+    <>
+     <h2 className='font-bold text-2xl mt-8 mb-2 text-center'>
+     {currentQuestion.title}
       </h2>
-     <p className='text-xl text-grayLight capitalize text-center'>
+     <p className='mb-8 text-xl text-grayLight capitalize text-center'>
     {category}
       </p>
-<Timer
-  duration={30}
-  
-  timesUp={()=> {
-    navigate('/congratulations')
-    
-    }}/>
 
-
-
-     <ul className='my-8 p-4 '>
-     
-        
-        {currentQuestion?.alternatives.map(alternative =>{
-           return(
-             <li key={alternative.text}>
-               <Alternative onClick={()=>questionClickHandler(alternative.isTrue)} isFlipped={isFlipped} isTrue={alternative.isTrue}>
-                 {alternative.text}
-               </Alternative>
-             </li>
-           )
-         })}
-        
-    
-     </ul>
+    <div className=''>
+      <Timer
+        duration={300}  
+        timesUp={()=> {
+          navigate('/congratulations')
+      
+          }}/>
+    </div>
+       <div >        
+        <ul>
+         {currentQuestion.alternatives.map((alternative:any, index:any) =>{
+          return (
+            <li>
+              <Alternative key={index} isFlipped={isFlipped} isTrue={alternative.isTrue} onClick={()=> alternativeClicked(alternative.isTrue)}>
+                {alternative.text}
+              </Alternative>
+            </li>
+          )
+        })}
+        </ul>
+       </div>
+     </>
+    }   
      <h3>Pontos: {userPoints}</h3>
     </div>
       </div>

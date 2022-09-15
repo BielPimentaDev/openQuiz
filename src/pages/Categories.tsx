@@ -36,14 +36,13 @@ export  function Categories() {[]
   const handlerClick = (category: any)=>{
     setCategory(category)
     navigate('/main')
-
   }
+  
   return (
     <div className='text-center p-2 px-3'>
       <Logo/>
-      <img src='/public/universe.png' className='absolute z-[-1] right-16 bottom-0 w-[350px]'/>
+      <img src='/universe.png' className='absolute z-[-1] right-16 bottom-0 w-[350px]'/>
       <h2 className='font-bold text-lg my-4'>Selecione uma de nossas categorias de perguntas:</h2>
-
       <div className='grid grid-cols-3 gap-4 my-8'>
         
       {categoryList.map(category=>{

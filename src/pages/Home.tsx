@@ -1,15 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '../components/Button.style'
-import {PrimaryButton} from '../components/PrimaryButton'
-import { SecundaryButton } from '../components/SecundaryButton'
-import { AppContext } from '../context/AppContext'
+
 
 
 export  function Home() {
-  const {category} = useContext(AppContext)
-  
-    
   return (
       <div className='text-center flex flex-col items-center justify-between  h-screen'>
         <div>

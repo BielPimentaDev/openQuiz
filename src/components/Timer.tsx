@@ -9,7 +9,7 @@ interface TimerProps{
 
 export default function Timer(props: TimerProps) {
   return (
-    <div className='w-[20%] mx-auto text-2xl mt-4'>
+    <div className='w-full my-4 flex justify-center text-2xl mt-4'>
         <CountdownCircleTimer
         initialRemainingTime={props.remainingTime}
         isPlaying
