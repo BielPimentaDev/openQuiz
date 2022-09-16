@@ -19,32 +19,37 @@ export  function Main() {
   const [isFlipped, setIsFlipped] = useState<boolean> (false)  
   const [questions, setQuestions] = useState<any>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [shuffAlternatives, setShuffAlternatives] = useState([])
+  const [shuffAlternatives, setShuffAlternatives] = useState<any>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
   const currentQuestion = questions[currentQuestionIndex]
   const categoryRef = collection(db, category)
 
+  
   const getDatas = async ()=>{
-    const data = await getDocs(categoryRef)         
-    setQuestions(data.docs.map((doc:any)=> ({
-      ...doc.data()      
-    
-    })))      
-    setIsLoading(false)
-    setQuestionsLength(Object.keys(questions).length)  
-    console.log(questionsLength)    
+    const data = await getDocs(categoryRef)  
+    const questions = data.docs.map((doc:any)=> (
+      ({...doc.data()})
+    ))     
+    for (let question of questions){
+      shuffleArray(question.alternatives)
+       }
+      setQuestions(shuffleArray(questions))
+      setIsLoading(false)
+     
   }
-  
-  
-  useEffect(()=>{ 
-    
+  useEffect(()=>{     
     getDatas()  
-    console.log(questions)     
-    
+   
   },[])
 
+  useEffect(()=>{ 
+    setQuestionsLength(Object.keys(questions)?.length) 
+    
+  },[isFlipped])
+
+
   const maxArrayCheck = () =>{        
-    if (currentQuestionIndex == Object.keys(questions).length - 1 ){
+    if (currentQuestionIndex == Object.keys(questions)?.length - 1 ){
       navigate('/congratulations')
     } 
     else {setCurrentQuestionIndex(curr => curr + 1)}
@@ -66,27 +71,27 @@ export  function Main() {
     {isLoading ? <p>Carregando...</p> : 
     <>
      <h2 className='font-bold text-2xl mt-8 mb-2 text-center'>
-     {currentQuestion.title}
+     {currentQuestion?.title}
       </h2>
      <p className='mb-8 text-xl text-grayLight capitalize text-center'>
     {category}
       </p>
 
     <div className=''>
-      <Timer
+      {/* <Timer
         duration={50}  
         timesUp={()=> {
           navigate('/congratulations')
       
-          }}/>
+          }}/> */}
     </div>
        <div >        
         <ul>
-         {shuffleArray(currentQuestion.alternatives).map((alternative:any, index:any) =>{
+         {currentQuestion?.alternatives.map((alternative:any, index:any) =>{
           return (
-            <li>
-              <Alternative key={index} isFlipped={isFlipped} isTrue={alternative.isTrue} onClick={()=> alternativeClicked(alternative.isTrue)}>
-                {alternative.text}
+            <li key={index}>
+              <Alternative  isFlipped={isFlipped} isTrue={alternative?.isTrue} onClick={()=> alternativeClicked(alternative?.isTrue)}>
+                {alternative?.text}
               </Alternative>
             </li>
           )

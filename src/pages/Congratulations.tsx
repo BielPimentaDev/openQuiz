@@ -10,7 +10,7 @@ export  function Congratulations() {
    const {userPoints, setUserPoints} = useContext(AppContext)
    const {category} = useContext(AppContext)
    const {questionsLength} = useContext(AppContext)
-   const pointsPercentual:number = (userPoints/ questionsLength *100)
+   const pointsPercentual:number = ((userPoints/ questionsLength) *100)
   
 
 
@@ -22,7 +22,7 @@ export  function Congratulations() {
       <img src='/congratulations.png' className='w-[300px] mx-auto'/>
       <p className='font-semibold'>
         Você respondeu <br/>
-        <span className='text-3xl'>{userPoints}/{questionsLength + 1}</span> <br/>
+        <span className='text-3xl'>{userPoints}/{questionsLength}</span> <br/>
         respostas certas!
       </p>
 

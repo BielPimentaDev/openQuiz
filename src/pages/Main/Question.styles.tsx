@@ -8,7 +8,7 @@ type Props = {
 
 
 export const Alternative = styled.div<Props>`
-
+    text-transform: capitalize;
     width:80%;
     margin: auto;
     margin-bottom: 20px;

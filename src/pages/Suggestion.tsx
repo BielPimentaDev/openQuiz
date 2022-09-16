@@ -97,8 +97,16 @@ export default function Suggestion() {
   }
  
   const handleSubmit = (e: any) :void=>{   
-    e.preventDefault()    
-    createQuestion()
+    e.preventDefault() 
+    setValues({
+      category: '',
+      questionTitle: '',
+      trueAnswer: '',
+      falseAnswer1: '',
+      falseAnswer2: '',
+      falseAnswer3: '',
+    })
+     createQuestion()
     
 
   }
@@ -147,7 +155,7 @@ export default function Suggestion() {
                 name = {input.name}
                 required                
                 onChange= {(e: React.ChangeEvent<HTMLInputElement>) => setValues({...values, [e.target.name]: e.target.value}) }
-                
+                value= {values[input.name]}
                 />
               </div>
               {input.name == 'trueAnswer' && <hr className='mb-4 text-grayLight'/>}
