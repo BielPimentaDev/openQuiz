@@ -19,6 +19,7 @@ export  function Main() {
   const [isFlipped, setIsFlipped] = useState<boolean> (false)  
   const [questions, setQuestions] = useState<any>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [shuffAlternatives, setShuffAlternatives] = useState([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
   const currentQuestion = questions[currentQuestionIndex]
   const categoryRef = collection(db, category)
@@ -73,7 +74,7 @@ export  function Main() {
 
     <div className=''>
       <Timer
-        duration={300}  
+        duration={50}  
         timesUp={()=> {
           navigate('/congratulations')
       
