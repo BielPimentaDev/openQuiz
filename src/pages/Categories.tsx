@@ -5,6 +5,7 @@ import { AppContext } from '../context/AppContext'
 import {BiCodeAlt} from 'react-icons/bi'
 import {GiWorld} from 'react-icons/gi'
 import {BsBook} from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 import {MdBiotech} from 'react-icons/md'
 
 export  function Categories() {[]
@@ -59,7 +60,9 @@ export  function Categories() {[]
       
       </div>
 
-      
+      <button className='text-strong font-bold underline absolute right-8 bottom-10'>
+        <Link to='/'>Voltar</Link>
+      </button>
     </div>
   )
 }
