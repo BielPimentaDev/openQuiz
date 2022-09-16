@@ -14,10 +14,9 @@ import { shuffleArray } from '../../helpers/shuffleArray';
 export  function Main() {
   let navigate = useNavigate()  
   const {userPoints, setUserPoints} = useContext(AppContext)
-  const {setQuestionsLength} = useContext(AppContext)
+  const {setQuestionsLength, questionsLength} = useContext(AppContext)
   const {category} = useContext(AppContext)
-  const [isFlipped, setIsFlipped] = useState<boolean> (false)
-  const [ shuffledAlternatives, setShuffledAlternatives] = useState([])
+  const [isFlipped, setIsFlipped] = useState<boolean> (false)  
   const [questions, setQuestions] = useState<any>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
@@ -30,14 +29,16 @@ export  function Main() {
       ...doc.data()      
     
     })))      
-    setIsLoading(false)      
+    setIsLoading(false)
+    setQuestionsLength(Object.keys(questions).length)  
+    console.log(questionsLength)    
   }
   
-  const teste = [1,2,3,4,5]
-  console.log(shuffleArray(teste))
+  
   useEffect(()=>{ 
-    setQuestionsLength(Object.keys(questions).length)
-    getDatas()       
+    
+    getDatas()  
+    console.log(questions)     
     
   },[])
 
@@ -80,7 +81,7 @@ export  function Main() {
     </div>
        <div >        
         <ul>
-         {currentQuestion.alternatives.map((alternative:any, index:any) =>{
+         {shuffleArray(currentQuestion.alternatives).map((alternative:any, index:any) =>{
           return (
             <li>
               <Alternative key={index} isFlipped={isFlipped} isTrue={alternative.isTrue} onClick={()=> alternativeClicked(alternative.isTrue)}>

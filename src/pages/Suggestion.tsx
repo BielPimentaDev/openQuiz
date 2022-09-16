@@ -117,8 +117,9 @@ export default function Suggestion() {
       <h2 className='font-bold  text-2xl'>Sugestão de pergunta</h2>
       <p className='font-semibold text-grayLight text-sm '>Contribua para o nosso banco de questões e torne nosso jogo mais dinâmico.</p>
       
-    <form onSubmit={()=> console.log('first')}>
-      <div className='flex items-center justify-center gap-3 my-4'>
+    <form className='flex flex-col items-center'>
+        <h3 className='font-bold text-start px-4 text-xl pt-2'>Escolha uma categoria:</h3>
+      <div className='flex items-center justify-center gap-3 my-4 flex-wrap'>
         {
           categories.map((categorie, index) =>{
             return(
