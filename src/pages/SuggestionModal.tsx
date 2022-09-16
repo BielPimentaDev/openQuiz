@@ -17,7 +17,7 @@ export default function SuggestionModal({setShowModal}: Props) {
        
         <h2 className='font-bold text-2xl'>Obrigado por contribuir</h2>
         <p className='text-grayLight text-sm my-2'>Iremos avaliar sua pergunta e em breve ela estara em nossos bancos!</p>
-        <img src="/public/thanks.png"/>
+        <img src="/thanks.png"/>
         <div className='flex flex-col gap-4'>
             <Link to="/suggestion" ><Button onClick={() => setShowModal(false)} primary>Enviar outra pergunta</Button></Link>
             <Link to="/"><Button secundary>Voltar ao menu </Button></Link>
