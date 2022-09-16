@@ -78,12 +78,12 @@ export  function Main() {
       </p>
 
     <div className=''>
-      {/* <Timer
+      <Timer
         duration={50}  
         timesUp={()=> {
           navigate('/congratulations')
       
-          }}/> */}
+          }}/>
     </div>
        <div >        
         <ul>
